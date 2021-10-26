@@ -1,14 +1,8 @@
 import subprocess
 import sys
 import os
-#import numpy as np
 import shutil, glob
 import pickle as pkl
-
-# get number from slurm array jobs
-#seq = sys.argv[1]
-#base = int(sys.argv[2])
-#temp = int(sys.argv[3])
 
 idx = int(sys.argv[1])-1
 temp_diff = int(sys.argv[2])
@@ -22,10 +16,6 @@ seq_dict = {'CCTATATATCC':[327, 315, 308, 307],
 
 seq_list = list(seq_dict.keys())
 base_list = [0, 2, 4, 6]
-
-#sigma_list = [0.02, 0.1, 0.5]
-#bias_factor_list = [5, 10, 15]
-#height_list = [0.4, 0.8, 1.2]
 
 inverse = False
 if inverse: inv='_inv'
@@ -42,12 +32,6 @@ run_steps = 1000000000
 base_idx, seq_idx = idx%len(base_list), idx//len(base_list)
 base, seq = base_list[base_idx], seq_list[seq_idx] 
 temp = seq_dict[seq][base_idx] + temp_diff
-
-## set up for a x36 array run
-#base = base_list[idx%len(base_list)]
-#temp = temp_list[idx//len(base_list)]
-#sigma = sigma_list[(idx//4) // 3]
-#bias_factor = bias_factor_list [(idx//4) % 3]
 
 # specify relevant file names:
 main_file = '11bp_abasic_plumed.in'
